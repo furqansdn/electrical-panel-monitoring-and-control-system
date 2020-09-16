@@ -1,0 +1,40 @@
+extends ./layout/login/base
+
+block content
+    .header.bg-gradient-primary.py-7.py-lg-8.pt-lg-9
+        .container
+            .header-body.text-center.mb-7
+                .row.justify-content-center
+                    .col-xl-5.col-lg-6.col-md-8.px-5
+                        h1.text-white SELAMAT DATANG
+                        p.text-lead.text-white  Aplikasi Monitoring dan Control Panel Listrik
+        .separator.separator-bottom.separator-skew.zindex-100
+            svg(x='0' y='0' viewbox='0 0 2560 100' preserveaspectratio='none' version='1.1' xmlns='http://www.w3.org/2000/svg')
+                polygon.fill-default(points='2560 0 2560 100 0 100')
+         
+    .container.mt--8.pb-5#login-container         
+        .row.justify-content-center
+            .col-lg-5.col-md-7
+                .card.bg-secondary.border-0.mb-0
+                    .card-header.bg-transparent.pb-5
+                        .text-muted.text-center.mt-2.mb-3
+                            | Login
+                    .card-body.px-lg-5.py-lg-5
+                        form#form-login(role='form')                      
+                            .form-group.mb-3
+                                .input-group.input-group-merge.input-group-alternative
+                                    .input-group-prepend
+                                        span.input-group-text
+                                            i.ni.ni-email-83
+                                    input.form-control#email(placeholder='you@example.com',  type='email' , required)
+                            .form-group
+                                .input-group.input-group-merge.input-group-alternative
+                                    .input-group-prepend
+                                        span.input-group-text
+                                            i.ni.ni-lock-circle-open
+                                    input.form-control#password(placeholder='••••••••', type='password', required, minlength='8')
+                            .text-center
+                                button.btn.btn-primary.my-4#btn-signin(type='button') Sign in
+
+
+

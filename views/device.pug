@@ -1,0 +1,93 @@
+extends ./layout/dashboard/base
+
+mixin btnSubDevice(status, item)
+    if status
+        button.btn.btn-danger.btn-switch(data-item=`${item}`, data-operate=`${!status}`) MATIKAN
+    else
+        button.btn.btn-success.btn-switch(data-item=`${item}`, data-operate=`${!status}`) HIDUPKAN
+
+block content
+    .container-fluid.mt--6
+        .row
+            .col-xl-4.order-xl-2
+                .card.bg-default.device-info(data-id=`${device.id}`)
+                    .card-header.bg-transparent
+                        h3.h3.text-white= device.name
+                    .card-body.card-body-device
+                        table.table.align-items-center.table-dark.h2.text-white
+                            tbody.list
+                                tr
+                                    td 
+                                        span.name.mb-0.text-lg Lokasi
+                                    td 
+                                        span.name.mb-0.text-lg= device.location
+                                tr
+                                    td 
+                                        span.name.mb-0.text-lg Subscribe Topic
+                                    td 
+                                        span.name.mb-0.text-lg= device.subscribeTopic
+                                tr
+                                    td 
+                                        span.name.mb-0.text-lg Location Slug
+                                    td 
+                                        span.name.mb-0.text-lg= device.locationSlug
+                                tr
+                                    td 
+                                        span.name.mb-0.text-lg Status
+                                    td 
+                                        span.badge.badge-pill.badge-success.name.mb-0.text-lg= device.status
+                                tr
+                                    td 
+                                        span.name.mb-0.text-lg Lampu
+                                    td 
+                                        +btnSubDevice(device.subDevice.lamp, 'lamp')
+                                tr
+                                    td 
+                                        span.name.mb-0.text-lg Stok Kontak
+                                    td 
+                                        +btnSubDevice(device.subDevice.outlet, 'outlet')
+                                tr
+                                    td 
+                                        span.name.mb-0.text-lg Air Conditioner
+                                    td 
+                                        +btnSubDevice(device.subDevice.airCon, 'airCon')
+                                tr
+                                    td 
+                                        span.name.mb-0.text-lg Waktu Hidup
+                                    td 
+                                        #datetimepicker1.input-group.date
+                                            input.form-control.date-config#date-start(type='text' value=`${device.start}` name='start')
+                                            span.input-group-addon.input-group-append
+                                                button#button-addon2.btn.btn-secondary(type='button')
+                                                    span.fa.fa-calendar
+                                tr
+                                    td 
+                                        span.name.mb-0.text-lg Waktu Mati
+                                    td 
+                                        #datetimepicker2.input-group.date
+                                            input.form-control.date-config#date-end(type='text' value=`${device.end}` name='end')
+                                            span.input-group-addon.input-group-append
+                                                button#button-addon2.btn.btn-secondary(type='button')
+                                                    span.fa.fa-calendar
+                        button.btn.btn-success.float-right.btn-update-time.d-none Update
+
+            .col-xl-8.order-xl-1
+                .card.bg-default
+                    .card-header.bg-transparent
+                        .row.align-item-center
+                            .col
+                                h5.h3.text-white Statistik Total Daya Digunakan 30 Hari Terakhir
+                            .col.text-right
+                                a.btn.btn-success(href=`/device/${device.id}/recap-data`) Download Excel
+                    .card-body
+                        .chart
+                            canvas#chart-line.chart-canvas.chart-electricity(data-id=`${device.id}`)
+
+
+block append script
+    script(src='/assets/vendor/chart.js/dist/Chart.min.js')
+    script(src='/assets/vendor/chart.js/dist/Chart.extension.js')
+    //- script(src='/assets/vendor/moment/moment.js')
+    script(src='/assets/vendor/moment.min.js')
+    script(src='/assets/vendor/bootstrap-datetimepicker.js')
+

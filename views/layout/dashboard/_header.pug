@@ -1,0 +1,15 @@
+.header.bg-primary.pb-6
+    .container-fluid
+        .header-body       
+            .row.align-items-center.py-4
+                .col-lg-6.col-7
+                    h6.h2.text-white.d-inline-block.mb-0 Default
+                    nav.d-none.d-md-inline-block.ml-md-4(aria-label='breadcrumb')
+                        ol.breadcrumb.breadcrumb-links.breadcrumb-dark
+                            li.breadcrumb-item
+                                a(href='#')
+                                    i.fas.fa-home
+                            li.breadcrumb-item
+                                a(href='#') Dashboards
+                            li.breadcrumb-item.active(aria-current='page') Default
+            block content_header_card

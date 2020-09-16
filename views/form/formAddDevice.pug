@@ -1,0 +1,24 @@
+.card.bg-secondary.border-0.mb-0
+    .card-header.bg-transparent.pb-5
+        .text-muted.text-center
+            small Tambah Perangkat Baru
+    .card-body
+        form#modal-form(role='form' action=`/api/v1/device/`)
+            .form-group.mb-3
+                .input-group.input-group-merge.input-group-alternative
+                    .input-group-prepend
+                        span.input-group-text
+                            i.fas.fa-desktop
+                    input.form-control(placeholder='Nama Device' type='text' name='name')
+            .form-group.mb-3
+                .input-group.input-group-merge.input-group-alternative
+                    .input-group-prepend
+                        span.input-group-text
+                            i.fas.fa-map
+                    input.form-control(placeholder='Lokasi' type='text' name='location')
+            .form-group.mb-3
+                .input-group.input-group-merge.input-group-alternative
+                    .input-group-prepend
+                        span.input-group-text
+                            i.fas.fa-layer-group
+                    input.form-control(placeholder='Subscribe ke topic' type='text' name='subscribeTopic')

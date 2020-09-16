@@ -1,0 +1,50 @@
+{
+  "name": "polmed-iot",
+  "version": "1.0.0",
+  "description": "mqtt + node.js + express + socket.io + mongoose",
+  "main": "server.js",
+  "scripts": {
+    "start:dev": "nodemon server.js",
+    "start:prod": "pm2 start --name iot-app server.js",
+    "watch:js": "parcel watch --hmr-port 8080 ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
+    "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js"
+  },
+  "keywords": [
+    "mqtt",
+    "express",
+    "socket.io",
+    "mongoose"
+  ],
+  "author": "Muhammad Furqan Soedono",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.10.4",
+    "axios": "^0.20.0",
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "exceljs": "^4.1.1",
+    "express": "^4.17.1",
+    "javascript-time-ago": "^2.0.13",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.27.0",
+    "mongoose": "^5.10.0",
+    "morgan": "^1.10.0",
+    "mqtt": "^4.2.1",
+    "pug": "^3.0.0",
+    "slugify": "^1.4.5",
+    "socket.io": "^2.3.0",
+    "validator": "^13.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "prettier": "^2.1.1"
+  }
+}

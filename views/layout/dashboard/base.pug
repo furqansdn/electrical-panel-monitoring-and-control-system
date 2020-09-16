@@ -1,0 +1,50 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0, initial-scale=1, shrink-to-fit=no')
+        title IOT POLMED | #{title}
+        //- FONTS
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet'>
+
+        //- Icons
+        link(rel='stylesheet' href='/assets/vendor/nucleo/css/nucleo.css' type='text/css')
+        link(rel='stylesheet' href='/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css' type='text/css')
+
+        //- CSS
+        link(rel='stylesheet', href='/assets/css/argon.css?v=1.2.0')
+
+    body
+
+        
+        // SIDE NAVIGATION
+        include _sidenav
+
+        .main-content#panel
+            include _topnav
+
+            // Content Header
+            include _header
+               
+            // Content
+            block content
+
+        include ./_modal
+        // Core
+        script(src='/assets/vendor/jquery/dist/jquery.min.js')
+        script(src='/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')
+        script(src='/assets/vendor/js-cookie/js.cookie.js')
+        script(src='/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js')
+        script(src='/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js')
+
+        block script
+        //- PLUGINS HERE
+
+        //- ARGON
+        script(src='/assets/js/argon.js?v=1.2.0')
+        script(src='/js/bundle.js')
+
+
+
+
+

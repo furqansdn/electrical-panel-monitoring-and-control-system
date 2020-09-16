@@ -1,0 +1,98 @@
+extends ./layout/dashboard/base
+
+mixin tableRow(data)
+    tr
+        td(scope='row')= data.name
+        td= data.location
+        td= data.locationSlug
+        td= data.subscribeTopic
+        td
+            a.btn.btn-sm.btn-primary(href=`/device/${data.id}` data-toggle="tooltip" data-placement="top" title="Lihat detail")
+                i.fas.fa-info-circle
+            button.btn.btn-sm.btn-warning.btn-modal-show(href=`/device/${data.id}/edit`, data-title=`Edit ${data.name}` data-toggle="tooltip" data-placement="top")
+                i.fas.fa-edit
+            button.btn.btn-sm.btn-danger.btn-delete--device(href=`/api/v1/device/${data.id}` data-toggle="tooltip" data-placement="top" title="Delete data")
+                i.fas.fa-trash-alt
+
+block content_header_card
+    .row
+        .col-xl-12.col-md-6
+            .card.bg-default.p-3.card-device--list
+                .card-header.bg-transparent               
+                    .row.align-items-center
+                        .col
+                            h2.mb-0.text-white Perangkat Yang Terdaftar
+                        .col.text-right
+                            a.btn.btn-primary.btn-modal-show(href='/device/create' data-title='Tambah Perangkat Baru') Tambah Baru
+                .card-body
+                    .table-responsive
+                        // Projects table
+                        table.table.align-items-center.table-flush.table-dark
+                            thead.thead-dark
+                                tr
+                                    th(scope='col') Nama Perangkat
+                                    th(scope='col') Lokasi
+                                    th(scope='col') Lokasi Slug
+                                    th(scope='col') Subscribe Topic
+                                    th(scope='col') Action
+
+                            tbody
+                                each device in devices
+                                    +tableRow(device)
+
+
+block content
+    .container-fluid.mt--6
+        .row
+            each elect in electricity
+                .col-xl-4
+                    .card
+                        .card-header.border-0
+                            .row.align-items-center
+                                .col
+                                    h3.mb-0= elect.device[0].name
+                                .col.text-right
+                                    a.btn.btn-sm.btn-primary(href=`/device/${elect.device[0]._id}`) Detail
+                        .card-body.p-0
+                            ul.list-group
+                                li.list-group-item.d-flex.align-items-center
+                                    .col
+                                        h5.card-title.text-uppercase.text-muted.mb-0 Tegangan
+                                        span.h2.font-weight-bold.mb-0.key-voltage(data-id=`${elect.device[0]._id}`)= `${elect.voltage} V`
+                                    .col-auto
+                                        .icon.icon-shape.bg-red.text-white.rounded-circle.shadow
+                                            i.ni.ni-active-40
+                                li.list-group-item.d-flex.align-items-center
+                                    .col
+                                        h5.card-title.text-uppercase.text-muted.mb-0 Arus
+                                        span.h2.font-weight-bold.mb-0.key-electricCurrent(data-id=`${elect.device[0]._id}`)= `${elect.electricCurrent} A`
+                                    .col-auto
+                                        .icon.icon-shape.bg-red.text-white.rounded-circle.shadow
+                                            i.ni.ni-active-40
+                                li.list-group-item.d-flex.align-items-center
+                                    .col
+                                        h5.card-title.text-uppercase.text-muted.mb-0 Daya
+                                        span.h2.font-weight-bold.mb-0.key-power(data-id=`${elect.device[0]._id}`)= `${elect.power} W`
+                                    .col-auto
+                                        .icon.icon-shape.bg-red.text-white.rounded-circle.shadow
+                                            i.ni.ni-active-40
+                                li.list-group-item.d-flex.align-items-center
+                                    .col
+                                        h5.card-title.text-uppercase.text-muted.mb-0 Daya Terpakai
+                                        span.h2.font-weight-bold.mb-0.key-powerUsage(data-id=`${elect.device[0]._id}`)= `${elect.powerUsage} kWh`
+                                    .col-auto
+                                        .icon.icon-shape.bg-red.text-white.rounded-circle.shadow
+                                            i.ni.ni-active-40
+                        .card-footer.py-2
+                            span.key-lastUpdated(data-id=`${elect.device[0]._id}`)= `Last Updated ${elect.createdAt.toLocaleString()}`
+
+
+block append script
+    script(src='/assets/vendor/moment.min.js')
+    script(src='/assets/vendor/bootstrap-datetimepicker.js')
+
+
+
+
+
+
